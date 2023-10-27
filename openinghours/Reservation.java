@@ -1,3 +1,5 @@
+package openinghours;
+
 import java.time.*;
 
 public class Reservation {
