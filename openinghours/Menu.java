@@ -16,7 +16,8 @@ public class Menu {
         System.out.println("1. Check current opening hours");
         System.out.println("2. Change opening hours");
         System.out.println("3. Show avaliable times");
-        System.out.println("4. Exit");
+        System.out.println("4. Configure Reservations");
+        System.out.println("5. Exit");
         System.out.print("Enter your choice: ");
     }
 
