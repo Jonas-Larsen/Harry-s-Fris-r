@@ -32,7 +32,11 @@ public class Main {
                     break;
                 case 3:
                     menu.showAvaliableTimes();
+                    break;
                 case 4:
+                    menu.configureReservations();
+                    break;
+                case 5:
                     System.out.println("Exiting the program.");
                     break;
                 default:
