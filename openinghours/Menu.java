@@ -49,5 +49,9 @@ public class Menu {
             System.out.println(ledigTid);
         }
     }
+
+    public void configureReservations() {
+        new ConfigureReservations().run();
     }
+}
 
