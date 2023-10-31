@@ -8,6 +8,7 @@ public class Main {
     public Main() {
         StoreHours store = new StoreHours();
         menu = new Menu(store);
+        this.logind = new frisørloging("noget", "noget");
     }
 
     public static void main(String[] args) {
@@ -15,7 +16,9 @@ public class Main {
 
     }
 
-    private void run() {
+    private void run() throws InterruptedException {
+        (new Main()).run();
+    }
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -39,7 +42,8 @@ public class Main {
                 case 5:
                     menu.showAvaliableTimesForNextFiveDays();
                 case 6:
-                    
+                    this.logind.logind();
+                    break;
                 case 7:
                     System.out.println("Exiting the program.");
                     break;
