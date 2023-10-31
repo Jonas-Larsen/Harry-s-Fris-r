@@ -55,7 +55,7 @@ public class Main {
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
-        } while (choice != 7);
+        } while (choice != 8);
 
 
         scanner.close();
