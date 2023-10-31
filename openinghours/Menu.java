@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Menu {
     private StoreHours store;
 
+
     public Menu(StoreHours store) {
         this.store = store;
     }
@@ -75,5 +76,28 @@ public class Menu {
             currentDate = addDays(currentDate, 1);
         }
     }
+
+    public boolean validatePassword() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the password: ");
+        String input = scanner.nextLine();
+        if (input.equals("harryharry")) {
+            System.out.println("Password is correct. Access granted.");
+            return true; // Return true to indicate that the password is correct.
+        } else {
+            System.out.println("Incorrect password, try again.");
+            return false; // Return false to indicate that the password is incorrect.
+        }
+    }
+
+    public void displayFinancialInformation() {
+        double currentMonthEarnings = financialData.getCurrentMonthEarnings();
+        int currentMonthCustomers = financialData.getCurrentMonthCustomers();
+
+        System.out.println("Financial Information:");
+        System.out.printf("Current Month Earnings: %.2f kr%n", + currentMonthEarnings);
+        System.out.println("Current Month Customers: " + currentMonthCustomers);
+    }
+}
 }
 
