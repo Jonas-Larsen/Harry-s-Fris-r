@@ -23,7 +23,8 @@ public class Menu {
         System.out.println("5. Show avaliable times for next five days");
         System.out.println("6. log in as accountant");
         System.out.println("7. Show Financial Data");
-        System.out.println("8. Exit");
+        System.out.println("8. Configure/list credit for customers");
+        System.out.println("9. Exit");
         System.out.print("Enter your choice: ");
     }
 
@@ -60,6 +61,10 @@ public class Menu {
     public void configureReservations() {
         new ConfigureReservations().run();
     }
+
+    public void configureCredit() {
+        new DisplayAmountAndCredit().run();
+    ]
     
     public static Date addDays(Date date, int days) {
         Calendar calendar = Calendar.getInstance();
