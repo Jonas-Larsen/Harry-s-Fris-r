@@ -50,5 +50,30 @@ public class FrisorBookingSystem {
         tid += antalMinutter * 60 * 1000;
         return new Date(tid);
     }
+    
+    private boolean isTimeSlotReserved(Date time, int durationMinutes) {
+        for (Date reservedTime : reserveredeTider) {
+            Date endTime = addMinutes(reservedTime, durationMinutes);
+            if (time.after(reservedTime) && time.before(endTime)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Date setHourAndMinute(Date date, int hour, int minute) {
+        Date newDate = new Date(date.getTime());
+        newDate.setHours(hour);
+        newDate.setMinutes(minute);
+        return newDate;
+    }
+
+    private Date addMinutes(Date date, int minutes) {
+        long time = date.getTime();
+        time += minutes * 60 * 1000;
+        return new Date(time);
+    }
+
 }
+
          
