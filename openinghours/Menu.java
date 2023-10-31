@@ -64,7 +64,7 @@ public class Menu {
 
     public void configureCredit() {
         new DisplayAmountAndCredit().run();
-    ]
+    }
     
     public static Date addDays(Date date, int days) {
         Calendar calendar = Calendar.getInstance();
