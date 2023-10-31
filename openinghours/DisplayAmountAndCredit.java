@@ -1,3 +1,5 @@
+package openinghours;
+
 import java.util.*;
 import java.io.*;
 
