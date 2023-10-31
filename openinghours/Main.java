@@ -7,14 +7,14 @@ public class Main {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new Main().run();
 
     }
 
     private void run() throws InterruptedException {
-        (new Main()).run();
-    }
+        
+    
         StoreHours store = new StoreHours();
         menu = new Menu(store);
         this.logind = new frisørloging("noget", "noget");
@@ -59,5 +59,5 @@ public class Main {
 
         scanner.close();
     }
-
+}
 }
