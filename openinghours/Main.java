@@ -37,12 +37,16 @@ public class Main {
                     menu.configureReservations();
                     break;
                 case 5:
+                    menu.showAvaliableTimesForNextFiveDays();
+                case 6:
+                    
+                case 7:
                     System.out.println("Exiting the program.");
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
-        } while (choice != 4);
+        } while (choice != 7);
 
 
         scanner.close();
