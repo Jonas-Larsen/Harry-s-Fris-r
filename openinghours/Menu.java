@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class Menu {
     private StoreHours store;
+    private FinancialData financialData;
 
 
-    public Menu(StoreHours store) {
+    public Menu(StoreHours store, FinancialData financialData) {
         this.store = store;
+        this.financialData = financialData;
     }
 
     public void showMenu() {
