@@ -50,6 +50,7 @@ public class Main {
                         menu.displayFinancialInformation();
                 case 8:
                     menu.configureCredit();
+                    break;
                 case 9:
                     System.out.println("Exiting the program.");
                     break;
