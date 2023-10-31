@@ -22,7 +22,7 @@ public class Menu {
         System.out.println("4. Configure Reservations");
         System.out.println("5. Show avaliable times for next five days");
         System.out.println("6. log in as accountant");
-        System.out.println("7. Show Financial Data")
+        System.out.println("7. Show Financial Data");
         System.out.println("8. Exit");
         System.out.print("Enter your choice: ");
     }
