@@ -5,10 +5,6 @@ import java.util.Scanner;
 public class Main {
     private Menu menu; // Define the 'menu' variable here
 
-    public Main() {
-        StoreHours store = new StoreHours();
-        menu = new Menu(store);
-        this.logind = new frisørloging("noget", "noget");
     }
 
     public static void main(String[] args) {
@@ -19,6 +15,11 @@ public class Main {
     private void run() throws InterruptedException {
         (new Main()).run();
     }
+        StoreHours store = new StoreHours();
+        menu = new Menu(store);
+        this.logind = new frisørloging("noget", "noget");
+        financialData = new FinancialData();
+        menu = new Menu(store, financialData);
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -46,6 +47,10 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("Exiting the program.");
+                    break;
+                case 8:
+                    if (menu.validatePassword())
+                        menu.displayFinancialInformation();
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
