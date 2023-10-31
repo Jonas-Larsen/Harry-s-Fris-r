@@ -6,7 +6,7 @@ public class Main {
     private Menu menu; // Define the 'menu' variable here
     private FinancialData financialData;
     private frisørloging logind;
-    }
+    
 
     public static void main(String[] args) throws InterruptedException {
         new Main().run();
@@ -65,4 +65,4 @@ public class Main {
         scanner.close();
     }
 }
-}
+
