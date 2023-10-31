@@ -5,14 +5,14 @@ public class DisplayAmountAndCredit {
     private static Scanner console = new Scanner(System.in);
     private static HashMap<String, Customer> customerList = new HashMap<>();
 
-    public static void main(String[] args) {
+    public void run() {
         loadCustomerList();
         System.out.println("Here are your options: ");
         listOptions();
         chooseOption();
     }
 
-    private static void chooseOption() {
+    private void chooseOption() {
         System.out.print("Pick an option (0 to exit) [1-5]: ");
         String pick = console.nextLine().strip();
 
@@ -40,7 +40,7 @@ public class DisplayAmountAndCredit {
         }
     }
 
-    private static void listCredit() {
+    private void listCredit() {
         String owingCustomers = "";
         for (Customer customer : customerList.values()) {
             if (customer.amount() != 0.0) {
@@ -55,7 +55,7 @@ public class DisplayAmountAndCredit {
         }
     }
 
-    private static void listFullyPaid() {
+    private void listFullyPaid() {
         String hasPaid = "";
         for (Customer customer : customerList.values()) {
             if (customer.amount() == 0.0) {
@@ -70,7 +70,7 @@ public class DisplayAmountAndCredit {
         }
     }
 
-    private static void registerPaidDebt() {
+    private void registerPaidDebt() {
         System.out.print("Choose customer to register payment for: ");
         String choice = console.nextLine().strip();
         choice = bigFirstLetter(choice);
@@ -91,7 +91,7 @@ public class DisplayAmountAndCredit {
 
     }
 
-    private static void showPaymentDetails() {
+    private void showPaymentDetails() {
         System.out.print("Choose customer to show details for: ");
         String choice = console.nextLine().strip();
         choice = bigFirstLetter(choice);
@@ -108,7 +108,7 @@ public class DisplayAmountAndCredit {
         }
     }
 
-    private static void registerPayment(String name) {
+    private void registerPayment(String name) {
         System.out.print("Type amount owed (0 if customer paid in full): ");
         double amount;
         try {
@@ -123,7 +123,7 @@ public class DisplayAmountAndCredit {
         saveCustomerList();
     }
 
-    private static void saveCustomerList() {
+    private void saveCustomerList() {
         try {
             var fileWriter = new FileWriter(new File("PaymentStatus.csv"));
             for (Customer customer : customerList.values()) {
@@ -133,7 +133,7 @@ public class DisplayAmountAndCredit {
         } catch (Exception e) {}
     }
 
-    private static void loadCustomerList() {
+    private void loadCustomerList() {
         try {
             Scanner file = new Scanner(new File("PaymentStatus.csv"));
             while (file.hasNextLine()) {
@@ -146,7 +146,7 @@ public class DisplayAmountAndCredit {
         } catch (Exception e) {}
     }
 
-    private static void listOptions() {
+    private void listOptions() {
         System.out.println("""
 
                 \t1) List customers who paid with credit
@@ -157,7 +157,7 @@ public class DisplayAmountAndCredit {
                 """);
     }
 
-    private static void customerExists(String name) {
+    private void customerExists(String name) {
         if (customerList.containsKey(name)) {
             System.out.println("Customer already exists.");
             System.out.print("Do you want to override? [Y/n]: ");
@@ -176,7 +176,7 @@ public class DisplayAmountAndCredit {
         }
     }
 
-    private static String bigFirstLetter(String string) {
+    private String bigFirstLetter(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 
