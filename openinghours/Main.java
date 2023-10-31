@@ -49,6 +49,8 @@ public class Main {
                     if (menu.validatePassword())
                         menu.displayFinancialInformation();
                 case 8:
+                    menu.configureCredit();
+                case 9:
                     System.out.println("Exiting the program.");
                     break;
                 default:
