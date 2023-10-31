@@ -46,11 +46,10 @@ public class Main {
                     this.logind.logind();
                     break;
                 case 7:
-                    System.out.println("Exiting the program.");
-                    break;
-                case 8:
                     if (menu.validatePassword())
                         menu.displayFinancialInformation();
+                case 8:
+                    System.out.println("Exiting the program.");
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
