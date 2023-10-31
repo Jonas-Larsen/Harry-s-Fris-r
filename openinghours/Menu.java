@@ -54,5 +54,26 @@ public class Menu {
     public void configureReservations() {
         new ConfigureReservations().run();
     }
+    
+    public static Date addDays(Date date, int days) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_YEAR, days);
+        return calendar.getTime();
+    }
+
+    public void showAvaliableTimesForNextFiveDays(){
+        FrisorBookingSystem bookingSystem = new FrisorBookingSystem();
+        Date currentDate = new Date();
+
+        for (int i = 0; i < 5; i++){
+            List<Date> avaliableTimes = bookingSystem.findLedigeTider(currentDate, 30);
+            System.out.println("Avaliable times for " + currentDate + ":");
+            for (Date avaliableTime : avaliableTimes){
+                System.out.println(avaliableTime);
+            }
+            currentDate = addDays(currentDate, 1);
+        }
+    }
 }
 
