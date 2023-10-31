@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     private Menu menu; // Define the 'menu' variable here
-
+    private FinancialData financialData;
+    private frisørloging logind;
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -16,7 +17,6 @@ public class Main {
         
     
         StoreHours store = new StoreHours();
-        menu = new Menu(store);
         this.logind = new frisørloging("noget", "noget");
         financialData = new FinancialData();
         menu = new Menu(store, financialData);
