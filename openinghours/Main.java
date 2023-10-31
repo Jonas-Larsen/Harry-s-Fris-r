@@ -46,8 +46,10 @@ public class Main {
                     this.logind.logind();
                     break;
                 case 7:
-                    if (menu.validatePassword())
+                    if (menu.validatePassword()) {
                         menu.displayFinancialInformation();
+                    }
+                    break;
                 case 8:
                     menu.configureCredit();
                     break;
