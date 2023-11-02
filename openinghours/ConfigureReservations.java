@@ -44,6 +44,18 @@ public class ConfigureReservations {
                 //det nye jeg havde added
                 reservation.setBetaling(currentLine.next());
                 reservation.setVare(currentLine.next());
+                String pris = null;
+
+                if (vare.equals("ingen")) {
+                    pris = "100";
+                } else if (vare.equals("shampo,brush")) {
+                    pris = "250";
+                } else if (vare.equals("brush")) {
+                    pris = "200";
+                } else if (vare.equals("shampo")) {
+                    pris = "150";
+                }
+                reservation.setPris(pris);
                 reservationList.put(reservation.getName(), reservation);
             }
             file.close();
