@@ -45,6 +45,7 @@ public class frisørloging {
         Scanner scanner = new Scanner(System.in);
         int penge = 0;
 
+        int skylder = 0;
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("ReservationList.csv"));
             String line;
@@ -65,28 +66,49 @@ public class frisørloging {
             while ((line = bufferedReader.readLine()) != null) {
                 // Her ser jeg på filen og ændre derefter CSV filen til en array med de splittet parts pr linje. Derefter Konverter datoen fra CSV til en LocalDate så den kan læse
                 String[] parts = line.split(";");
-                if (parts.length >= 3) {
+                if (parts.length >= 4) {
                     String dateString = parts[1];
 
+                    int etKlipning = 100;
                     LocalDate reservationDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
                     //tjekker om datoen er immellem de 2 datoer jeg har lavet, aka is before er før og isafter er efter
                     if (!reservationDate.isBefore(startDate) && !reservationDate.isAfter(endDate)) {
                         System.out.println(line);
                     }
+
                     //har bare lavet lidt om på det og nu er der så 3 kolerner, der tjekker om har betalt, kan nok konventere beløb når vi endelig får det lavet
-                    if(line.contains("Har Betalt")&&!reservationDate.isBefore(startDate) && !reservationDate.isAfter(endDate)){
-                        penge += 100;
+                    if (line.contains("Har betalt")) {
+                        if (line.contains("null")) {
+                            penge += etKlipning;
+                        } else if (line.contains("shampo,brush")) {
+                            penge += 150+etKlipning;
+                        } else if (!line.contains("shampo") && line.contains("brush")) {
+                            penge += 100+etKlipning;
+                        } else if (line.contains("shampo") && !line.contains("brush")) {
+                            penge += 50+etKlipning;
+                        }
+                    } else if (line.contains("Credit")) {
+                        if (line.contains("null")) {
+                            skylder += 100+etKlipning;
+                        } else if (line.contains("shampo,brush")) {
+                            skylder += 150+etKlipning;
+                        } else if (!line.contains("shampo") && line.contains("brush")) {
+                            skylder += 100+etKlipning;
+                        } else if (line.contains("shampo") && !line.contains("brush")) {
+                          skylder += 50+etKlipning;
                     }
+                    }
+
                 }
             }
 
-            System.out.println("I perioden fra " + startDateStr + " til " + endDateStr + " er der tjent: " + penge + "kr");
+            System.out.println("I perioden fra " + startDateStr + " til " + endDateStr + " er der tjent: " + penge + "kr" + " og folk der skylder/credit: " + skylder);
             bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
+    
 public void logind() throws InterruptedException {
     Scanner scanner = new Scanner(System.in);
     boolean isharry = true;
