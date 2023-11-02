@@ -124,10 +124,21 @@ public class ConfigureReservations {
         String betaling = console.nextLine();
 
         //det nye jeg havde added
-        reservation.setVare(vare);
-        reservation.setBetaling(betaling);
+                if (vare.equals("ingen")) {
+            pris = "100";
+        } else if (vare.equals("shampo,brush")) {
+            pris = "250";
+        } else if (vare.equals("brush")) {
+            pris = "200";
+        } else if (vare.equals("shampo")) {
+            pris = "150";
+        }
+        reservation.setPris(pris);
+        
         try {
             reservation.setTime(LocalDateTime.parse(date + "T" + time));
+            reservation.setVare(vare);
+            reservation.setBetaling(betaling);
             reservationList.put(reservation.getName(), reservation);
         } catch (Exception e) {
             System.out.println("Date and/or time not valid.");
