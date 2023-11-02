@@ -8,7 +8,7 @@ public class Reservation {
     private String vare;
     private String betaling;
     public String toString() {
-        return name + ";" + time;
+        return name + ";" + time+ ";" + vare + ";" + betaling + ";" + pris + " kr.";
     }
 
     public void setTime(LocalDateTime time) {
@@ -32,7 +32,23 @@ public class Reservation {
         this.vare = vare;
     }
 
+    public String getVare() {
+        return vare;
+    }
+
     public void setBetaling(String betaling) {
         this.betaling = betaling;
+    }
+
+    public String getBetaling() {
+        return betaling;
+    }
+
+    public void setPris(String pris) {
+        this.pris = pris;
+    }
+
+    public String getPris() {
+        return pris;
     }
 }
