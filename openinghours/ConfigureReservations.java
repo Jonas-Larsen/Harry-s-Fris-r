@@ -41,6 +41,9 @@ public class ConfigureReservations {
                 currentLine.useDelimiter(";");
                 reservation.setName(currentLine.next());
                 reservation.setTime(LocalDateTime.parse(currentLine.next()));
+                //det nye jeg havde added
+                reservation.setBetaling(currentLine.next());
+                reservation.setVare(currentLine.next());
                 reservationList.put(reservation.getName(), reservation);
             }
             file.close();
@@ -102,7 +105,15 @@ public class ConfigureReservations {
         String date = console.nextLine();
         System.out.print("Choose time of day (HH:mm): ");
         String time = console.nextLine();
+        //det nye jeg havde added
+        System.out.print("Chose produkt to buy: shampo,brush (skriv i format shampo,brush eller brush eller shampo");
+        String vare = console.nextLine();
+        System.out.print("Do he pay in Credit or Har betalt (Skriv en af dem)");
+        String betaling = console.nextLine();
 
+        //det nye jeg havde added
+        reservation.setVare(vare);
+        reservation.setBetaling(betaling);
         try {
             reservation.setTime(LocalDateTime.parse(date + "T" + time));
             reservationList.put(reservation.getName(), reservation);
