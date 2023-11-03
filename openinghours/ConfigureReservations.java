@@ -119,9 +119,9 @@ public class ConfigureReservations {
         String date = console.nextLine();
 
         var dayValue = LocalDate.parse(date).getDayOfWeek().getValue();
-        var store = new StoreHours(null);
+        var store = new StoreHours();
         var openingHours = store.getOpeningHours();
-        String day = openingHours[dayValue];
+        String day = openingHours[dayValue - 1];
 
         if (day.equals("Closed")) {
             System.out.println("Store is closed on the chosen date.");
@@ -129,14 +129,14 @@ public class ConfigureReservations {
             return;
         }
 
-        var openTime = LocalTime.parse(day.substring(0, 4));
-        var closeTime = LocalTime.parse(day.substring(11, 14));
+        var openTime = LocalTime.parse(day.substring(0, 5));
+        var closeTime = LocalTime.parse(day.substring(11, 15));
         var noon = LocalTime.of(12, 0);
             
-        if (day.substring(6, 7).equals("PM")) {
+        if (day.substring(6, 8).equals("PM")) {
             openTime = openTime.plusHours(noon.getHour());
         }
-        if (day.substring(16, 17).equals("PM")) {
+        if (day.substring(16, 18).equals("PM")) {
                 closeTime = closeTime.plusHours(noon.getHour());
         }
 
