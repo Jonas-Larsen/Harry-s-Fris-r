@@ -21,12 +21,12 @@ public class StoreHours {
     }
 
     private void setDefaultOpeningHours() {
-        openingHours[0] = "10:00 AM - 6:00 PM";  // Monday
-        openingHours[1] = "10:00 AM - 6:00 PM";  // Tuesday
-        openingHours[2] = "10:00 AM - 6:00 PM";  // Wednesday
-        openingHours[3] = "10:00 AM - 6:00 PM";  // Thursday
-        openingHours[4] = "10:00 AM - 6:00 PM";  // Friday
-        openingHours[5] = "10:00 AM - 6:00 PM";  // Saturday
+        openingHours[0] = "10:00 AM - 06:00 PM";  // Monday
+        openingHours[1] = "10:00 AM - 06:00 PM";  // Tuesday
+        openingHours[2] = "10:00 AM - 06:00 PM";  // Wednesday
+        openingHours[3] = "10:00 AM - 06:00 PM";  // Thursday
+        openingHours[4] = "10:00 AM - 06:00 PM";  // Friday
+        openingHours[5] = "10:00 AM - 06:00 PM";  // Saturday
         openingHours[6] = "Closed";              // Sunday
     }
 
