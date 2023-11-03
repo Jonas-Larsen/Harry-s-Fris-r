@@ -105,9 +105,10 @@ public class ConfigureReservations {
         if (reservationList.containsKey(name)) {
             System.out.println("Customer already has reservation.");
             overwriteOrNot(name);
-        } else {
-            finishAddingReservation(name);
+            return;
         }
+        
+        finishAddingReservation(name);
     }
 
     private void finishAddingReservation(String name) {
@@ -115,8 +116,37 @@ public class ConfigureReservations {
         reservation.setName(name);
         System.out.print("Choose date (yyyy-MM-dd): ");
         String date = console.nextLine();
+
+        var dayValue = LocalDate.parse(date).getDayOfWeek().getValue();
+        var openingHours = new StoreHours().loadOpeningHoursFromFile();
+        String day = openingHours[dayValue];
+
+        if (day.equals("Closed")) {
+            System.out.println("Store is closed on the chosen date.");
+            finishAddingReservation(name);
+            return;
+        }
+
+        var openTime = LocalTime.parse(day.substring(0, 4));
+        var closeTime = LocalTime.parse(day.substring(11, 14));
+        var noon = LocalTime.of(12, 0);
+            
+        if (day.substring(6, 7).equals("PM")) {
+            openTime = openTime.plusHours(noon.getHour());
+        }
+        if (day.substring(16, 17).equals("PM")) {
+                closeTime = closeTime.plusHours(noon.getHour());
+        }
+
         System.out.print("Choose time of day (HH:mm): ");
         String time = console.nextLine();
+
+        if (LocalTime.parse(time).isBefore(openTime) || LocalTime.parse(time).isAfter(closeTime)) {
+            System.out.println("Chosen time is not within opening hours.");
+            finishAddingReservation(name);
+            return;
+        }
+
         //det nye jeg havde added
         System.out.print("Chose produkt to buy: shampo,brush (skriv i format shampo,brush eller brush eller shampo");
         String vare = console.nextLine();

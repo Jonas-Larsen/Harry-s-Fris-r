@@ -42,7 +42,7 @@ public class StoreHours {
             }
         }
 
-        private void loadOpeningHoursFromFile () {
+        public String[] loadOpeningHoursFromFile () {
             try {
                 Path filePath = Paths.get("opening  _hours.txt");
                 if (Files.exists(filePath)) {
@@ -50,6 +50,7 @@ public class StoreHours {
                     for (int i = 0; i < lines.size() && i < openingHours.length; i++) {
                         openingHours[i] = lines.get(i);
                     }
+                    return openingHours;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
