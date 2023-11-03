@@ -131,13 +131,12 @@ public class ConfigureReservations {
 
         var openTime = LocalTime.parse(day.substring(0, 5));
         var closeTime = LocalTime.parse(day.substring(11, 16));
-        var noon = LocalTime.of(12, 0);
             
         if (day.substring(6, 8).equals("PM")) {
-            openTime = openTime.plusHours(noon.getHour());
+            openTime = openTime.plusHours(12);
         }
         if (day.substring(16, 19).equals("PM")) {
-                closeTime = closeTime.plusHours(noon.getHour());
+            closeTime = closeTime.plusHours(12);
         }
 
         System.out.print("Choose time of day (HH:mm): ");
