@@ -1,8 +1,8 @@
 package openinghours;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.io.File;
+import java.time.*;
 
 public class FrisorBookingSystem {
     private List<Date> reserveredeTider;
@@ -12,21 +12,33 @@ public class FrisorBookingSystem {
         reserveredeTider = new ArrayList<>();
     }
 
-    public List<Date> findLedigeTider(Date dato, int antalMinutterMellemAftaler){
-    List<Date> ledigeTider = new ArrayList<>();
+    public ArrayList<LocalTime> findLedigeTider(LocalDate day){
+        var ledigeTider = new ArrayList<LocalTime>();
 
-    Date startTid = setTidspunkt(dato, 10, 0);
-    Date slutTid = setTidspunkt(dato, 18, 0);
-
-    Date nuværendeTid = startTid;
-
-    while (nuværendeTid.before(slutTid)) {
-        if (!erTidspunktReserveret(nuværendeTid, antalMinutterMellemAftaler)) {
-            ledigeTider.add(nuværendeTid);
+        int i = 10;
+        while (i != 18) {
+            ledigeTider.add(LocalTime.of(i, 0));
+            ledigeTider.add(LocalTime.of(i, 30));
+            i++;
         }
-        nuværendeTid = tilføjMinutter(nuværendeTid, antalMinutterMellemAftaler);
-    }
-    return ledigeTider;
+
+        try {
+            Scanner file = new Scanner(new File("ReservationList.csv"));
+            while (file.hasNextLine()) {
+                Scanner currentLine = new Scanner (file.nextLine());
+                currentLine.useDelimiter(";");
+                currentLine.next();
+                LocalDateTime dateTime = LocalDateTime.parse(currentLine.next());
+                LocalDate date = LocalDate.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth());
+                if (date.isEqual(day)) {
+                    LocalTime time = LocalTime.of(dateTime.getHour(), dateTime.getMinute());
+                    ledigeTider.remove(ledigeTider.indexOf(time));
+                }
+            
+            }
+        } catch (Exception e) {}
+        
+        return ledigeTider;
     }
 
     private boolean  erTidspunktReserveret(Date tid, int antalMinutterMellemAftaler){
