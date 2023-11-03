@@ -42,8 +42,9 @@ public class ConfigureReservations {
                 reservation.setName(currentLine.next());
                 reservation.setTime(LocalDateTime.parse(currentLine.next()));
                 //det nye jeg havde added
+                String vare = currentLine.next();
+                reservation.setVare(vare);
                 reservation.setBetaling(currentLine.next());
-                reservation.setVare(currentLine.next());
                 String pris = null;
 
                 if (vare.equals("ingen")) {
@@ -155,6 +156,7 @@ public class ConfigureReservations {
         String betaling = console.nextLine();
 
         //det nye jeg havde added
+        String pris = null;
                 if (vare.equals("ingen")) {
             pris = "100";
         } else if (vare.equals("shampo,brush")) {
