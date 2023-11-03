@@ -118,7 +118,8 @@ public class ConfigureReservations {
         String date = console.nextLine();
 
         var dayValue = LocalDate.parse(date).getDayOfWeek().getValue();
-        var openingHours = new StoreHours().loadOpeningHoursFromFile();
+        var store = new StoreHours(null);
+        var openingHours = store.getOpeningHours();
         String day = openingHours[dayValue];
 
         if (day.equals("Closed")) {

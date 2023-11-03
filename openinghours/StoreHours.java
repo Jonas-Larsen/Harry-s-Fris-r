@@ -16,6 +16,10 @@ public class StoreHours {
         loadOpeningHoursFromFile();
     }
 
+    public StoreHours(String n) {
+        loadOpeningHoursFromFile();
+    }
+
     private void setDefaultOpeningHours() {
         openingHours[0] = "10:00 AM - 6:00 PM";  // Monday
         openingHours[1] = "10:00 AM - 6:00 PM";  // Tuesday
@@ -42,7 +46,7 @@ public class StoreHours {
             }
         }
 
-        public String[] loadOpeningHoursFromFile () {
+        private void loadOpeningHoursFromFile () {
             try {
                 Path filePath = Paths.get("opening  _hours.txt");
                 if (Files.exists(filePath)) {
@@ -50,7 +54,6 @@ public class StoreHours {
                     for (int i = 0; i < lines.size() && i < openingHours.length; i++) {
                         openingHours[i] = lines.get(i);
                     }
-                    return openingHours;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -65,4 +68,9 @@ public class StoreHours {
                 e.printStackTrace();
             }
         }
+
+        public String[] getOpeningHours() {
+            return openingHours;
+        }
+
 }
