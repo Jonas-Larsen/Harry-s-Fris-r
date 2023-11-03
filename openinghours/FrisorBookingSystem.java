@@ -24,19 +24,19 @@ public class FrisorBookingSystem {
                 currentLine.next();
                 LocalDateTime dateTime = LocalDateTime.parse(currentLine.next());
                 LocalDate date = LocalDate.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth());
-                if (date.isEqual(LocalDate.now())) {
+                if (date.isEqual(day) {
                     LocalTime time = LocalTime.of(dateTime.getHour(), dateTime.getMinute());
                     unavailable.add(time);
                 }
             }
+            file.close();
         } catch (Exception e) {}
 
         LocalTime i = LocalTime.of(10, 0);
         while (!i.equals(LocalTime.of(18, 0))) {
-            if (unavailable.contains(i)) {
-                continue;
+            if (!unavailable.contains(i)) {
+                ledigeTider.add(i);
             }
-            ledigeTider.add(i);
             i = i.plusMinutes(30);
         }
 
