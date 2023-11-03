@@ -112,7 +112,7 @@ public class frisørloging {
 public void logind() throws InterruptedException {
     Scanner scanner = new Scanner(System.in);
     boolean isharry = true;
-    frisørloging harryskonto = new frisørloging("123","123");
+    frisørloging harryskonto = new frisørloging("Harry","HarryHarry");
     frisørloging bruger1 = null;
     int value = 3;
     while(isharry){
