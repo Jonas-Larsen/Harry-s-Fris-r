@@ -1,8 +1,6 @@
 package openinghours;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     private StoreHours store;
@@ -47,13 +45,13 @@ public class Menu {
 
     public void showAvaliableTimes(){
         FrisorBookingSystem bookingSystem = new FrisorBookingSystem();
-        Date dato= new Date();
+        LocalDate dato = LocalDate.now();
 
 
-        List<Date> ledigeTider= bookingSystem.findLedigeTider(dato, 30);
+        ArrayList<LocalTime> ledigeTider = bookingSystem.findLedigeTider(dato);
 
         System.out.println("Ledige tider for " + dato);
-        for (Date ledigTid : ledigeTider){
+        for (LocalTime ledigTid : ledigeTider) {
             System.out.println(ledigTid);
         }
     }
@@ -75,15 +73,15 @@ public class Menu {
 
     public void showAvaliableTimesForNextFiveDays(){
         FrisorBookingSystem bookingSystem = new FrisorBookingSystem();
-        Date currentDate = new Date();
+        LocalDate currentDate = LocalDate.now();
 
         for (int i = 0; i < 5; i++){
-            List<Date> avaliableTimes = bookingSystem.findLedigeTider(currentDate, 30);
+            ArrayList<LocalTime> avaliableTimes = bookingSystem.findLedigeTider(currentDate);
             System.out.println("Avaliable times for " + currentDate + ":");
-            for (Date avaliableTime : avaliableTimes){
+            for (LocalTime avaliableTime : avaliableTimes){
                 System.out.println(avaliableTime);
             }
-            currentDate = addDays(currentDate, 1);
+            currentDate = currentDate.plusDays(1);
         }
     }
 
