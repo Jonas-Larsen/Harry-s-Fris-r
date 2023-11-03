@@ -14,13 +14,7 @@ public class FrisorBookingSystem {
 
     public ArrayList<LocalTime> findLedigeTider(LocalDate day){
         var ledigeTider = new ArrayList<LocalTime>();
-
-        int i = 10;
-        while (i != 18) {
-            ledigeTider.add(LocalTime.of(i, 0));
-            ledigeTider.add(LocalTime.of(i, 30));
-            i++;
-        }
+        var unavailable = new ArrayList<LocalTime>();
 
         try {
             Scanner file = new Scanner(new File("ReservationList.csv"));
@@ -30,14 +24,22 @@ public class FrisorBookingSystem {
                 currentLine.next();
                 LocalDateTime dateTime = LocalDateTime.parse(currentLine.next());
                 LocalDate date = LocalDate.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth());
-                if (date.isEqual(day)) {
+                if (date.isEqual(LocalDate.now())) {
                     LocalTime time = LocalTime.of(dateTime.getHour(), dateTime.getMinute());
-                    ledigeTider.remove(ledigeTider.indexOf(time));
+                    unavailable.add(time);
                 }
-            
             }
         } catch (Exception e) {}
-        
+
+        LocalTime i = LocalTime.of(10, 0);
+        while (!i.equals(LocalTime.of(18, 0))) {
+            if (unavailable.contains(i)) {
+                continue;
+            }
+            ledigeTider.add(i);
+            i = i.plusMinutes(30);
+        }
+
         return ledigeTider;
     }
 
